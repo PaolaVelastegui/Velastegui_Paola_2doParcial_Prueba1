@@ -2,9 +2,12 @@ package com.example.velastegui_paola_2doparcial_prueba1;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -83,7 +86,7 @@ public class MainActivityFragment extends Fragment {
         }
 
         this.questionNumberTextView.setText(
-                getString(app004.flagquizapp.R.string.question, 1, LogicaDePreguntas.getFlagsInQuiz()));
+                getString(R.string.question, 1, LogicaDePreguntas.getFlagsInQuiz()));
 
         return view;
     }
@@ -99,6 +102,7 @@ public class MainActivityFragment extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void resetQuiz() {
         this.quizViewModel.clearFileNameList();
         this.quizViewModel.setFileNameList(getActivity().getAssets());
@@ -123,6 +127,7 @@ public class MainActivityFragment extends Fragment {
         this.loadNextFlag();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void loadNextFlag() {
         AssetManager assets = getActivity().getAssets();
         String nextImage = this.quizViewModel.getNextCountryFlag();
@@ -131,7 +136,7 @@ public class MainActivityFragment extends Fragment {
         this.quizViewModel.setCorrectAnswer(nextImage);
         answerTextView.setText("");
 
-        questionNumberTextView.setText(getString(app004.flagquizapp.R.string.question,
+        questionNumberTextView.setText(getString(R.string.question,
                 (quizViewModel.getCorrectAnswers() + 1), LogicaDePreguntas.getFlagsInQuiz()));
 
         try (InputStream stream = assets.open(region + "/" + nextImage + ".png")) {
@@ -163,6 +168,7 @@ public class MainActivityFragment extends Fragment {
         ((Button) randomRow.getChildAt(column)).setText(this.quizViewModel.getCorrectCountryName());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void animate(boolean animateOut) {
         if (this.quizViewModel.getCorrectAnswers() == 0) {
             return;
@@ -193,8 +199,8 @@ public class MainActivityFragment extends Fragment {
     public void incorrectAnswerAnimation(){
         flagImageView.startAnimation(shakeAnimation);
 
-        answerTextView.setText(app004.flagquizapp.R.string.incorrect_answer);
-        answerTextView.setTextColor(getResources().getColor(app004.flagquizapp.R.color.wrong_answer));
+        answerTextView.setText(R.string.incorrect_answer);
+        answerTextView.setTextColor(getResources().getColor(R.color.wrong_answer));
     }
 
     public void disableButtons() {
