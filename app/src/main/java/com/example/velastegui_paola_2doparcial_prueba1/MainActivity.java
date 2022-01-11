@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setSharedPreferences() {
         // set default values in the app's SharedPreferences
-        PreferenceManager.setDefaultValues(this, app004.flagquizapp.R.xml.preferences, false);
+        PreferenceManager.setDefaultValues(this, com.example.velastegui_paola_2doparcial_prueba1.R.xml.preferences, false);
 
         // Register a listener for shared preferences changes
         PreferenceManager.getDefaultSharedPreferences(this)

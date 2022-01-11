@@ -84,6 +84,7 @@ public class MainActivityFragment extends Fragment {
 
         this.questionNumberTextView.setText(
                 getString(app004.flagquizapp.R.string.question, 1, LogicaDePreguntas.getFlagsInQuiz()));
+
         return view;
     }
 
